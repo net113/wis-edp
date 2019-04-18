@@ -14562,3 +14562,21 @@ svg {
     vertical-align: baseline;
     border-radius: .25em;
 }
+
+.modal-body .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: blue;
+  opacity: 0.5; 
+  font-weight: normal;/* Firefox */
+}
+
+.modal-body .custom-select::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: blue;
+  opacity: 0.5; 
+  font-weight: normal;
+}
+.modal-body .form-control{
+ font-weight:bold;
+}
+.modal-body .custom-select{
+ font-weight:bold;
+}

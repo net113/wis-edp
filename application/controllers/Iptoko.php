@@ -30,11 +30,6 @@ class iptoko extends CI_Controller
         <a href="javascript:void(0);" onClick="showModals(\'$1\')" class="admin-menu btn btn-warning btn-circle btn-sm">
             <i class="fas fa-fw fa-edit"></i>
         </a>
-        </span>
-        <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Delete">
-            <a href="javascript:void(0);" onClick="deleteID(\'$1\')" class="admin-menu btn btn-danger btn-circle btn-sm">
-                <i class="fas fa-fw fa-trash-restore-alt"></i>
-            </a>
         </span>', 'KodeToko');
         echo $this->datatables->generate();
     }
@@ -46,63 +41,27 @@ class iptoko extends CI_Controller
         $aksi = $this->input->post('aksi');
         switch ($aksi) {
             case "get":
-                $hasilget = $this->db->get_where('tb_toko', ['kodetoko' => $this->input->post('id')])->row_array();
+                $kdtk = $this->input->post('id');
+                $hasilget = $this->db->query("SELECT * FROM tb_toko JOIN master_ip USING(KodeToko) WHERE kodetoko='$kdtk';")->row_array();
                 echo json_encode($hasilget);
                 break;
 
-            case "new":
-
-                $data = "";
-                $list = ['KodeToko', 'NamaToko', 'tipe_koneksi_primary', 'tipe_koneksi_secondary', 'NoTelpToko', 'aspv', 'amgr', 'TypeToko24', 'TokoApka', 'isIkiosk'];
-                foreach ($list as $l) {
-                    $data .= $l . "='" . $this->input->post($l) . "',";
-                }
-                $updid = $this->session->userdata('fullname');
-                $this->db->query("INSERT INTO tb_toko SET $data updtime=CURRENT_TIMESTAMP(),updid='$updid' ");
-                if ($this->db->affected_rows()) {
-                    $this->session->set_flashdata('message', '<div class="my-0 alert alert-info" role="alert">
-                      INFO!! Data berhasil ditambahkan
-                    </div>');
-                    echo 'berhasil';
-                } else {
-                    echo 'gagal';
-                }
-
-
-                break;
-
-            case "delete":
-                $id = $this->input->post('key');
-                $this->db->where('KodeToko', $id);
-                $this->db->delete('tb_toko');
-
-                if ($this->db->affected_rows()) {
-                    $this->session->set_flashdata('message', '<div class="my-0 alert alert-warning" role="alert">
-                      INFO!! Data berhasil dihapus
-                    </div>');
-                    echo 'berhasil';
-                } else {
-                    echo 'gagal';
-                }
-
-                break;
-
+            
             case "edit":
                 $id = $this->input->post('key');
                 $data = "";
-                $list = ['KodeToko', 'NamaToko', 'tipe_koneksi_primary', 'tipe_koneksi_secondary', 'NoTelpToko', 'aspv', 'amgr', 'TypeToko24', 'TokoApka', 'isIkiosk'];
+                $list = [ 'tipe_koneksi_primary', 'tipe_koneksi_secondary', 'ip_router', 'ip_backup', 'ip_induk', 'ip_anak1', 'ip_apka', 'ip_ikios', 'ip_stb', 'ip_router_edc','ip_anak2','ip_anak3','ip_anak4','ip_anak5','ip_anak6','ip_anak7','ip_pointcafe','ip_telemetri' ];
                 foreach ($list as $l) {
                     $data .= $l . "='" . $this->input->post($l) . "',";
                 }
                 $updid = $this->session->userdata('fullname');
-                $this->db->query("UPDATE tb_toko SET $data updtime=CURRENT_TIMESTAMP(), updid='$updid' WHERE KodeToko='$id' ");
-                if ($this->db->affected_rows()) {
-                    $this->session->set_flashdata('message', '<div class="my-0 alert alert-info" role="alert">
-                  INFO!! Data berhasil dipudate
-                </div>');
-                    echo 'berhasil';
+                $this->db->query("UPDATE tb_toko INNER JOIN master_ip ON tb_toko.KodeToko=master_ip.KodeToko SET $data master_ip.updtime=CURRENT_TIMESTAMP(), master_ip.updid='$updid' WHERE master_ip.KodeToko='$id' ");
+                if ($this->db->affected_rows()  >= 0) {
+                    $hasil  = array("tipe" => "success", "data" => "Data sudah di Update");
+                    echo json_encode($hasil);
                 } else {
-                    echo 'gagal';
+                    $hasil  = array("tipe" => "error", "data" => $this->db->error()['message']);
+                    echo json_encode($hasil);
                 }
                 break;
         }

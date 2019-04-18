@@ -36,14 +36,16 @@ class Toko extends CI_Controller
             case "new":
 
                 $data = "";
-                $list = ['KodeToko', 'NamaToko', 'tipe_koneksi_primary', 'tipe_koneksi_secondary', 'NoTelpToko', 'aspv', 'amgr', 'TypeToko24', 'TokoApka', 'isIkiosk'];
+                $list = ['KodeToko', 'NamaToko', 'tipe_koneksi_primary', 'tipe_koneksi_secondary', 'NoTelpToko', 'aspv', 'amgr', 'TypeToko24', 'TokoApka', 'isIkiosk'];                
                 foreach ($list as $l) {
                     $data .= $l . "='" . $this->input->post($l) . "',";
                 }
+                $kdtk = $this->input->post('KodeToko');
                 $updid = $this->session->userdata('fullname');
                 $this->db->query("INSERT INTO tb_toko SET $data updtime=CURRENT_TIMESTAMP(),updid='$updid' ");
+                $this->db->query("INSERT INTO master_ip SET KodeToko='$kdtk', updtime=CURRENT_TIMESTAMP(),updid='$updid' ");
                 if ($this->db->affected_rows()  >= 0) {
-                    $hasil  = array("tipe" => "success", "data" => "Data sudah di Update");
+                    $hasil  = array("tipe" => "success", "data" => "Data Berhasil ditambahkan");
                     echo json_encode($hasil);
                 } else {
                     $hasil  = array("tipe" => "error", "data" => $this->db->error()['message']);
@@ -59,7 +61,7 @@ class Toko extends CI_Controller
                 $this->db->delete('tb_toko');
 
                 if ($this->db->affected_rows()  >= 0) {
-                    $hasil  = array("tipe" => "success", "data" => "Data sudah di Update");
+                    $hasil  = array("tipe" => "success", "data" => "Data Dihapus!!!!");
                     echo json_encode($hasil);
                 } else {
                     $hasil  = array("tipe" => "error", "data" => $this->db->error()['message']);

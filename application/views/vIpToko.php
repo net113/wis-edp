@@ -48,7 +48,7 @@
                       <span aria-hidden="true">&times;</span>
                   </button>
               </div>
-              <div class="modal-body">
+              <div class="modal-body pb-0">
                   <div class="alert alert-danger" role="alert" id="removeWarning">
                       <span class="fas fa-fw fa-exclamation-circle" aria-hidden="true"></span>
                       <span class="sr-only">Error:</span>
@@ -59,12 +59,12 @@
                       <input type="hidden" class="form-control" id="key" name="key">
                       <div class="form-group row">
                           <label class="col-sm-3 control-label" for="KodeToko">Nama</label>
-                          <input type="text" class="col-sm-2 form-control mr-1" id="KodeToko" name="KodeToko" placeholder="KDTK" required>
-                          <input type="text" class="col-sm-6 form-control" id="NamaToko" name="NamaToko" placeholder="NAMA" required>
+                          <input type="text" class="col-sm-2 form-control  form-control-sm mr-1" id="KodeToko" name="KodeToko" placeholder="KDTK" required>
+                          <input type="text" class="col-sm-6 form-control form-control-sm" id="NamaToko" name="NamaToko" placeholder="NAMA" required>
                       </div>
                       <div class="form-group row">
                           <label class="col-sm-3 control-label" for="tipe_koneksi_primary">Koneksi</label>
-                          <input list="list_koneksi_primary" value="" class="mr-2 col-sm-4 custom-select custom-select-sm" id="tipe_koneksi_primary" name="tipe_koneksi_primary" required>
+                          <input list="list_koneksi_primary" value="" class="mr-2 col-sm-4 custom-select custom-select-sm" placeholder="Jenis Koneksi Utama" id="tipe_koneksi_primary" name="tipe_koneksi_primary" required>
                           <datalist id="list_koneksi_primary">
                               <?php
                                 $role = $this->db->get('tb_tipe_koneksi')->result_array();
@@ -73,9 +73,12 @@
                                 }
                                 ?>
                           </datalist>
-                          <input list="list_koneksi_secondary" value="" class="col-sm-4 custom-select custom-select-sm" id="tipe_koneksi_secondary" name="tipe_koneksi_secondary">
+                          <input value="" class="col-sm-4 form-control form-control-sm" id="ip_router" name="ip_router" placeholder="IP Router Utama" required>
+                      </div>
+                      <div class="form-group row">
+                          <label class="col-sm-3 control-label" for="tipe_koneksi_secondary">Backup</label>
+                          <input list="list_koneksi_secondary" value="" class="mr-2 col-sm-4 custom-select custom-select-sm" placeholder="Jenis Koneksi Backup" id="tipe_koneksi_secondary" name="tipe_koneksi_secondary" >
                           <datalist id="list_koneksi_secondary">
-                              <option> - </option>
                               <?php
                                 $role = $this->db->get('tb_tipe_koneksi')->result_array();
                                 foreach ($role as $ic) {
@@ -83,47 +86,52 @@
                                 }
                                 ?>
                           </datalist>
+                          <input value="" class="col-sm-4 form-control form-control-sm" id="ip_backup" name="ip_backup" placeholder="IP Router Backup" >
                       </div>
                       <div class="form-group row">
-                          <label for="NoTelpToko" class="col-sm-3 control-label">Telp</label>
-                          <input type="text" class="form-control col-sm-6" id="NoTelpToko" name="NoTelpToko" required>
+                          <label class="col-sm-3 control-label" for="ip_induk">IP Induk</label>
+                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_induk" name="ip_induk" placeholder="IP Induk +1" >
+                          <label class="col-sm-3 control-label-sm" style="max-width: 20%;" for="ip_anak1">IP Anak1</label>
+                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_anak1" name="ip_anak1" placeholder="IP Anak1 + 2" >
+                          
                       </div>
                       <div class="form-group row">
-                          <label class="col-sm-3 control-label" for="aspv">Area</label>
-                          <input list="list_aspv" value="" class="mr-2 col-sm-4 custom-select custom-select-sm" id="aspv" name="aspv" required>
-                          <datalist id="list_aspv">
-                              <?php
-                                $role = $this->db->get_where('tb_area', ['jabatan' => 'aspv'])->result_array();
-                                foreach ($role as $ic) {
-                                    echo '<option value="' . $ic['initial'] . '">' . $ic['initial'] . ' - ' . $ic['nama'] . '</option>';
-                                }
-                                ?>
-                          </datalist>
-                          <input list="list_amgr" value="" class="col-sm-4 custom-select custom-select-sm" id="amgr" name="amgr" required>
-                          <datalist id="list_amgr">
-                              <?php
-                                $role = $this->db->get_where('tb_area', ['jabatan' => 'amgr'])->result_array();
-                                foreach ($role as $ic) {
-                                    echo '<option value="' . $ic['initial'] . '">' . $ic['initial'] . ' - ' . $ic['nama'] . '</option>';
-                                }
-                                ?>
-                          </datalist>
+                          <label class="col-sm-3 control-label" for="ip_apka">IP Apka</label>
+                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_apka" name="ip_apka" placeholder="IP Apka +3" >
+                          <label class="col-sm-3 control-label-sm" style="max-width: 20%;" for="ip_ikios">IP Ikios</label>
+                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_ikios" name="ip_ikios" placeholder="IP Ikios + 20" >                          
+                      </div>                      
+                      <div class="form-group row">
+                          <label class="col-sm-3 control-label" for="ip_stb">IP STB</label>
+                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_stb" name="ip_stb" placeholder="IP STB +17" >
+                          <label class="col-sm-3 control-label-sm" style="max-width: 20%;" for="ip_router_edc">IP RB EDC</label>
+                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_router_edc" name="ip_router_edc" placeholder="IP RB EDC + 19" >                          
                       </div>
                       <div class="form-group row">
-                          <label class="col-sm-3 control-label" for="TypeToko24">Status</label>
-                          <div class="custom-control custom-switch">
-                              <input type="checkbox" class="custom-control-input" id="TypeToko24" name="TypeToko24" value="">
-                              <label class="custom-control-label" for="TypeToko24">Toko 24jam</label>
-                          </div>
-                          <div class="ml-2 custom-control custom-switch">
-                              <input type="checkbox" class="custom-control-input" id="TokoApka" name="TokoApka" value="">
-                              <label class="custom-control-label" for="TokoApka">Toko Apka</label>
-                          </div>
-                          <div class="ml-2 custom-control custom-switch">
-                              <input type="checkbox" class="custom-control-input" id="isIkiosk" name="isIkiosk" value="">
-                              <label class="custom-control-label" for="isIkiosk">Ikiosk</label>
-                          </div>
+                          <label class="col-sm-3 control-label" for="ip_anak2">IP Anak2</label>
+                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_anak2" name="ip_anak2" placeholder="IP Induk + 4" >
+                          <label class="col-sm-3 control-label-sm" style="max-width: 20%;" for="ip_anak3">IP Anak3</label>
+                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_anak3" name="ip_anak3" placeholder="IP Anak3 + 5" >                          
                       </div>
+                      <div class="form-group row">
+                          <label class="col-sm-3 control-label" for="ip_anak4">IP Anak4</label>
+                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_anak4" name="ip_anak4" placeholder="IP Anak4 + 6" >
+                          <label class="col-sm-3 control-label-sm" style="max-width: 20%;" for="ip_anak5">IP Anak5</label>
+                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_anak5" name="ip_anak5" placeholder="IP Anak5 + 7" >                          
+                      </div>
+                      <div class="form-group row">
+                          <label class="col-sm-3 control-label" for="ip_anak6">IP Anak6</label>
+                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_anak6" name="ip_anak6" placeholder="IP Anak6 + 8" >
+                          <label class="col-sm-3 control-label-sm" style="max-width: 20%;" for="ip_anak7">IP Anak7</label>
+                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_anak7" name="ip_anak7" placeholder="IP Anak7 + 9" >                          
+                      </div>
+                      <div class="form-group row">
+                          <label class="col-sm-3 control-label" for="ip_pointcafe">IP P Cafe</label>
+                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_pointcafe" name="ip_pointcafe" placeholder="IP P Cafe + 9" >
+                          <label class="col-sm-3 control-label-sm" style="max-width: 22%;" for="ip_telemetri">IP Telemetri</label>
+                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_telemetri" name="ip_telemetri" placeholder="IP Telemetri + 10" >                          
+                      </div>
+                     
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -145,14 +153,7 @@
 
 
 
-  <script>
-      $.fn.dataTable.ext.buttons.tambah = {
-          className: 'buttons-tambah admin-menu',
-
-          action: function(e, dt, node, config) {
-              showModals();
-          }
-      };
+  <script>     
       $.fn.dataTable.ext.buttons.download = {
           className: 'admin-menu',
 
@@ -164,10 +165,7 @@
           var table = $('#dataTable').DataTable({
               lengthChange: false,
               dom: '<"row btn-group col-lg-12 "<"col-sm-12 col-md-9"B><"col-sm-12 col-md-3 float-right"f>><"row"rt><"row"<"col-sm-12 col-md-6 float-right"i><"col-sm-12 col-md-6 float-right"p>>',
-              buttons: [{
-                      extend: 'tambah',
-                      text: '<i class="fas fa-fw fa-plus-circle"></i> Tambah'
-                  },
+              buttons: [
                   'copy', 'pageLength',
                   {
                       extend: 'download',
@@ -268,17 +266,19 @@
                       $("#key").val(id);
                       $('#btn-aksi').html('Update');
                       $('#btn-aksi').addClass('btn-warning');
-                      setModalData(res);
-                      if (res.TypeToko24 == "Y") {
-                          $("#TypeToko24").attr("checked", true);
-                      }
-                      if (res.TokoApka == "Y") {
-                          $("#TokoApka").attr("checked", true);
-                      }
-                      if (res.isIkiosk == "Y") {
-                          $("#isIkiosk").attr("checked", true);
-                      }
+                      setModalData(res);    
+                      $("#KodeToko").attr("readonly",true);
+                      $("#NamaToko").attr("readonly",true);
                       $("#modal").modal("show");
+                  },
+                  error: function(xhr, textStatus, thrownError) {
+                      $("#modal").modal("show");
+                      swal({
+                          title: "FAILED",
+                          text: xhr.responseText,
+                          type: "error"
+                      });
+
                   }
               });
 
@@ -296,6 +296,46 @@
           }
       }
 
+      function viewModals(id) {
+
+// Untuk Eksekusi Data Yang Ingin di Edit 
+if (id) {
+
+    $.ajax({
+        type: "POST",
+        url: "<?= base_url('iptoko/crud') ?>",
+        dataType: 'json',
+        data: {
+            id: id,
+            aksi: "get"
+        },
+        beforeSend: function() {
+            clearModals();
+        },
+        success: function(res) {
+            $("#label").html('Detail Toko');
+            $("#aksi").val("edit");
+            $("#key").val(id);
+            $('#btn-aksi').hide();
+            setModalData(res);    
+            $("#KodeToko").attr("readonly",true);
+            $("#NamaToko").attr("readonly",true);
+            $("#modal").modal("show");
+        },
+        error: function(xhr, textStatus, thrownError) {
+            $("#modal").modal("show");
+            swal({
+                title: "FAILED",
+                text: xhr.responseText,
+                type: "error"
+            });
+
+        }
+    });
+
+}
+}
+
       function clearModals() {
           $('#modal input').removeAttr('readonly', '');
           $('#modal input[type=checkbox]').removeAttr('checked', '');
@@ -309,7 +349,7 @@
 
       function setModalData(res) {
 
-          var list = ['KodeToko', 'NamaToko', 'tipe_koneksi_primary', 'tipe_koneksi_secondary', 'NoTelpToko', 'aspv', 'amgr', 'TypeToko24', 'TokoApka', 'isIkiosk'];
+          var list = ['KodeToko', 'NamaToko', 'tipe_koneksi_primary', 'tipe_koneksi_secondary', 'ip_router', 'ip_backup', 'ip_induk', 'ip_anak1', 'ip_apka', 'ip_ikios', 'ip_stb', 'ip_router_edc','ip_anak2','ip_anak3','ip_anak4','ip_anak5','ip_anak6','ip_anak7','ip_pointcafe','ip_telemetri' ];
           $("#modal input").each(function(index) {
               let name = $(this).attr('name');
               if (list.includes(name)) {
@@ -363,21 +403,43 @@
       }
 
       function saveData() {
-          var formData = $("#form").serialize();
-          $.ajax({
-              type: "POST",
-              url: "<?= base_url('iptoko/crud') ?>",
-              dataType: 'html',
-              data: formData,
-              success: function(res) {
-                  window.location.replace('toko');
-              },
-              error: function(xhr, textStatus, thrownError) {
-                  $("#modal").modal("show");
-                  console.log(xhr.responseText);
-
+          let kekurangan = 0;
+          $("#form input[required]").each(function() {
+              if ($(this).val() == "") {
+                  $("#removeWarning").html('<span class="fas fa-fw fa-exclamation-circle" ></span> Harap isi field : ' + $(this).attr("name"));
+                  $("#removeWarning").show();
+                  kekurangan += 1;
               }
+          });
+          if (kekurangan == 0) {
+              var formData = $("#form").serialize();
+              $.ajax({
+                  type: "POST",
+                  url: "<?= base_url('iptoko/crud') ?>",
+                  dataType: 'json',
+                  data: formData,
+                  success: function(res) {
+                      $("#modal").modal("hide");
+                      swal({
+                          title: res.tipe.toUpperCase(),
+                          text: res.data,
+                          timer: 2500,
+                          type: res.tipe
+                      });
+                      $('#dataTable').DataTable().ajax.reload();
+                  },
+                  error: function(xhr, textStatus, thrownError) {
+                      $("#modal").modal("show");
+                      swal({
+                          title: "FAILED",
+                          text: xhr.responseText,
+                          type: "error"
+                      });
 
-          })
+                  }
+
+              })
+          }
+
       }
   </script>
