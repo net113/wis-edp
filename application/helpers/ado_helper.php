@@ -111,3 +111,30 @@ function getTokoKoneksi($jeniskoneksi)
         return $ci->db->error()['message'];
     }
 }
+
+function getWitel($tipewitel)
+{
+    $ci = get_instance();
+    $query = 'SELECT * FROM tb_astinet WHERE witel="' . $tipewitel . '"';
+    $totalTokoKoneksi =     $ci->db->query($query);
+    if ($totalTokoKoneksi) {
+        return $totalTokoKoneksi->num_rows();
+        //return $query;
+    } else {
+        return $ci->db->error()['message'];
+    }
+}
+
+function dowloadSQLtoCSV($strquery, $strnama){
+    $ci = get_instance();
+    $ci->load->dbutil();
+    $ci->load->helper('file');
+    $ci->load->helper('download');    
+    $query = $ci->db->query($strquery);
+    $delimiter = ",";
+    $newline = "\r\n";
+    $data = $ci->dbutil->csv_from_result($query, $delimiter, $newline);
+    $namafile = $strnama. date("d-m-Y") .".csv";
+    force_download($namafile, $data);
+
+}

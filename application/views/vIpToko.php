@@ -157,8 +157,9 @@
       $.fn.dataTable.ext.buttons.download = {
           className: 'admin-menu',
 
-          action: function(e, dt, node, config) {
-              downloadCSV();
+          action: function(e, dt, node, config) {            
+              downloadCSV()
+           
           }
       };
       $(document).ready(function() {
@@ -442,4 +443,9 @@ if (id) {
           }
 
       }
+
+      function downloadCSV(){
+        window.open('<?= base_url('iptoko/downloadmaster') ?>', '_blank');
+      }
+      
   </script>

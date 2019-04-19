@@ -11,10 +11,7 @@
           <div class="card-header pb-0 pt-3">
               <div class="row">
                   <div class="col-lg-6">
-                      <h5 class="m-0  text-primary">List All Toko Cabang Bogor 1 G113</h5>
-                      <span class="badge badge-danger">Franchise : <?= getTipeToko('F') ?> Toko</span>
-                      <span class="badge badge-warning">Reguler: <?= getTipeToko('T') ?> Toko</span>
-                      <span class="badge badge-success">Ceriamart: <?= getTipeToko('R') ?> Toko</span>
+                      <h5 class="m-0  text-primary">List Toko Fiberstar Cabang Bogor 1 G113</h5>
                   </div>
                   <div class="col-lg-6">
                       <?= $this->session->flashdata('message'); ?>
@@ -56,71 +53,44 @@
                       <input type="hidden" class="form-control" id="key" name="key">
                       <div class="form-group row">
                           <label class="col-sm-3 control-label" for="KodeToko">Nama</label>
-                          <input type="text" class="col-sm-2 form-control mr-1" id="KodeToko" name="KodeToko" placeholder="KDTK" required>
-                          <input type="text" class="col-sm-6 form-control" id="NamaToko" name="NamaToko" placeholder="NAMA" required>
-                      </div>
-                      <div class="form-group row">
-                          <label class="col-sm-3 control-label" for="tipe_koneksi_primary">Koneksi</label>
-                          <input list="list_koneksi_primary" value="" class="datalist mr-2 col-sm-4 custom-select custom-select-sm" id="tipe_koneksi_primary" name="tipe_koneksi_primary" required placeholder="Koneksi Utama">
-                          <datalist id="list_koneksi_primary">
+                          <input list="list_kdtk" value="" class="datalist mr-1 col-sm-3 custom-select " id="KodeToko" name="KodeToko" required placeholder="KDTK">
+                          <datalist id="list_kdtk">
                               <?php
-                                $role = $this->db->get('tb_tipe_koneksi')->result_array();
+                                $role = $this->db->get('tb_toko')->result_array();
                                 foreach ($role as $ic) {
-                                    echo '<option value="' . $ic['jenis'] . '">' . $ic['jenis'] . '</option>';
+                                    echo '<option value="' . $ic['KodeToko'] . '" data-nama="' . $ic['NamaToko'] . '"> ' . $ic['KodeToko'] . ' - ' . $ic['NamaToko'] . '</option>';
                                 }
                                 ?>
                           </datalist>
-                          <input list="list_koneksi_secondary" value="" class="datalist col-sm-4 custom-select custom-select-sm" id="tipe_koneksi_secondary" name="tipe_koneksi_secondary" placeholder="Koneksi Backup" >
-                          <datalist id="list_koneksi_secondary">
-                              <option> - </option>
-                              <?php
-                                $role = $this->db->get('tb_tipe_koneksi')->result_array();
-                                foreach ($role as $ic) {
-                                    echo '<option value="' . $ic['jenis'] . '">' . $ic['jenis'] . '</option>';
-                                }
-                                ?>
-                          </datalist>
+                          <input type="text" class="col-sm-5 form-control" id="NamaToko" name="NamaToko" placeholder="NAMA" required>
+                      </div>
+
+                      <div class="form-group row">
+                          <label for="sid" class="col-sm-3 control-label">SID</label>
+                          <input type="text" class="form-control col-sm-6" id="sid" name="sid" required>
                       </div>
                       <div class="form-group row">
-                          <label for="NoTelpToko" class="col-sm-3 control-label">Telp</label>
-                          <input type="text" class="form-control col-sm-6" id="NoTelpToko" name="NoTelpToko" required>
+                          <label for="user_ppoe" class="col-sm-3 control-label">USER PPOE</label>
+                          <input type="text" class="form-control col-sm-6" id="user_ppoe" name="user_ppoe" required>
                       </div>
                       <div class="form-group row">
-                          <label class="col-sm-3 control-label" for="aspv">Area</label>
-                          <input list="list_aspv" value="" class="mr-2 col-sm-4 custom-select custom-select-sm datalist" id="aspv" name="aspv" required placeholder="ASPV" >
-                          <datalist id="list_aspv">
-                              <?php
-                                $role = $this->db->get_where('tb_area', ['jabatan' => 'aspv'])->result_array();
-                                foreach ($role as $ic) {
-                                    echo '<option value="' . $ic['initial'] . '">' . $ic['initial'] . ' - ' . $ic['nama'] . '</option>';
-                                }
-                                ?>
-                          </datalist>
-                          <input list="list_amgr" value="" class="col-sm-4 custom-select custom-select-sm datalist" id="amgr" name="amgr" required placeholder="AMGR" >
-                          <datalist id="list_amgr">
-                              <?php
-                                $role = $this->db->get_where('tb_area', ['jabatan' => 'amgr'])->result_array();
-                                foreach ($role as $ic) {
-                                    echo '<option value="' . $ic['initial'] . '">' . $ic['initial'] . ' - ' . $ic['nama'] . '</option>';
-                                }
-                                ?>
-                          </datalist>
+                          <label for="pass_ppoe" class="col-sm-3 control-label">PASS PPOE</label>
+                          <input type="text" class="form-control col-sm-6" id="pass_ppoe" name="pass_ppoe" required>
                       </div>
                       <div class="form-group row">
-                          <label class="col-sm-3 control-label" for="TypeToko24">Status</label>
-                          <div class="custom-control custom-switch">
-                              <input type="checkbox" class="custom-control-input" id="TypeToko24" name="TypeToko24" value="">
-                              <label class="custom-control-label" for="TypeToko24">Toko 24jam</label>
-                          </div>
-                          <div class="ml-2 custom-control custom-switch">
-                              <input type="checkbox" class="custom-control-input" id="TokoApka" name="TokoApka" value="">
-                              <label class="custom-control-label" for="TokoApka">Toko Apka</label>
-                          </div>
-                          <div class="ml-2 custom-control custom-switch">
-                              <input type="checkbox" class="custom-control-input" id="isIkiosk" name="isIkiosk" value="">
-                              <label class="custom-control-label" for="isIkiosk">Ikiosk</label>
-                          </div>
+                          <label for="tanggal" class="col-sm-3 control-label">TGL AKTIF</label>
+                          <input type="date" class="form-control col-sm-6" data-date-format="DD MMMM YYYY" id="tanggal" name="tanggal" required>
                       </div>
+                      <div class="form-group row">
+                          <label for="stat" class="col-sm-3 control-label">STATUS</label>
+                          <select type="text" class="form-control col-sm-6 custom-select" id="stat" name="stat" required>
+                              <option value="Online">Online</option>
+                              <option value="BASO">BASO</option>
+                              <option value="Suspend">Suspend</option>
+                              <option value="Kendala">Kendala</option>
+                          </select>
+                      </div>
+
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -178,7 +148,7 @@
                   ['25 rows', '50 rows', '100 rows', 'Show all']
               ],
               ajax: {
-                  "url": "<?php echo base_url() . '/toko/get_data_json' ?>",
+                  "url": "<?php echo base_url() . '/fiberstar/get_data_json' ?>",
                   "type": "POST"
               },
               columns: [{
@@ -190,64 +160,26 @@
                       "title": "Nama"
                   },
                   {
-                      "data": "tipe_koneksi_primary",
-                      "title": "Koneksi"
+                      "data": "sid",
+                      "title": "SID"
                   },
                   {
-                      "data": "tipe_koneksi_secondary",
-                      "title": "Backup"
+                      "data": "user_ppoe",
+                      "title": "USER PPOE"
                   },
                   {
-                      "data": "NoTelpToko",
-                      "title": "Telp"
+                      "data": "pass_ppoe",
+                      "title": "PASS PPOE"
                   },
                   {
-                      "data": "aspv",
-                      "title": "AS"
+                      "data": "tanggal",
+                      "title": "TGL AKTIF"
                   },
                   {
-                      "data": "amgr",
-                      "title": "AM"
+                      "data": "stat",
+                      "title": "STATUS"
                   },
-                  {
-                      "data": "TypeToko24",
-                      "title": "Toko 24",
-                      "className": "text-center",
-                      render: function(data, type, row) {
-                          if (data === 'Y') {
-                              return '<div class="custom-control custom-switch"><input type="checkbox" class="custom-control-input"  checked >  <label class="custom-control-label" "></label></div>';
-                          } else {
-                              return '<div class="custom-control custom-switch"><input type="checkbox" class="custom-control-input"  >  <label class="custom-control-label" "></label></div>';
-                          }
-                          return data;
-                      }
-                  },
-                  {
-                      "data": "TokoApka",
-                      "title": "Apka",
-                      "className": "text-center",
-                      render: function(data, type, row) {
-                          if (data === 'Y') {
-                              return '<div class="custom-control custom-switch"><input type="checkbox" class="custom-control-input"  checked >  <label class="custom-control-label" "></label></div>';
-                          } else {
-                              return '<div class="custom-control custom-switch"><input type="checkbox" class="custom-control-input"  >  <label class="custom-control-label" "></label></div>';
-                          }
-                          return data;
-                      }
-                  },
-                  {
-                      "data": "isIkiosk",
-                      "title": "Ikiosk",
-                      "className": "text-center",
-                      render: function(data, type, row) {
-                          if (data === 'Y') {
-                              return '<div class="custom-control custom-switch"><input type="checkbox" class="custom-control-input"  checked >  <label class="custom-control-label" "></label></div>';
-                          } else {
-                              return '<div class="custom-control custom-switch"><input type="checkbox" class="custom-control-input"  >  <label class="custom-control-label" "></label></div>';
-                          }
-                          return data;
-                      }
-                  },
+
                   {
                       "data": "view",
                       "title": "Options",
@@ -278,6 +210,13 @@
               }
           });
 
+          $("#KodeToko").change(function() {
+              if ($(this).val() != "") {
+                  getnama = $("#list_kdtk").find("option[value='" + $(this).val() + "']");
+                  $("#NamaToko").val(getnama.attr("data-nama"));
+              }
+          });
+
       }); //domready
 
       function showModals(id) {
@@ -287,7 +226,7 @@
 
               $.ajax({
                   type: "POST",
-                  url: "<?= base_url('toko/crud') ?>",
+                  url: "<?= base_url('fiberstar/crud') ?>",
                   dataType: 'json',
                   data: {
                       id: id,
@@ -303,15 +242,7 @@
                       $('#btn-aksi').html('Update');
                       $('#btn-aksi').addClass('btn-warning');
                       setModalData(res);
-                      if (res.TypeToko24 == "Y") {
-                          $("#TypeToko24").attr("checked", true);
-                      }
-                      if (res.TokoApka == "Y") {
-                          $("#TokoApka").attr("checked", true);
-                      }
-                      if (res.isIkiosk == "Y") {
-                          $("#isIkiosk").attr("checked", true);
-                      }
+                      $("#KodeToko, #NamaToko").attr("readonly", true);
                       $("#modal").modal("show");
                   }
               });
@@ -320,6 +251,7 @@
           // Untuk Tambahkan Data
           else {
               clearModals();
+              $("#NamaToko").attr("readonly", true);
               $("#label").html("Add New Toko");
               $("#aksi").val("new");
               $('#btn-aksi').html('Save');
@@ -343,7 +275,7 @@
 
       function setModalData(res) {
 
-          var list = ['KodeToko', 'NamaToko', 'tipe_koneksi_primary', 'tipe_koneksi_secondary', 'NoTelpToko', 'aspv', 'amgr', 'TypeToko24', 'TokoApka', 'isIkiosk'];
+          var list = ['KodeToko', 'NamaToko', 'user_ppoe', 'sid', 'pass_ppoe', 'tanggal', 'stat'];
           $("#modal input").each(function(index) {
               let name = $(this).attr('name');
               if (list.includes(name)) {
@@ -362,7 +294,7 @@
       function deleteID(id) {
           $.ajax({
               type: "POST",
-              url: "<?= base_url('toko/crud') ?>",
+              url: "<?= base_url('fiberstar/crud') ?>",
               dataType: 'json',
               data: {
                   id: id,
@@ -380,15 +312,6 @@
                   $('#key').val(res.KodeToko);
                   $("#modal input").attr("readonly", "true");
                   $("#modal select").attr("disabled", "true");
-                  if (res.TypeToko24 == "Y") {
-                      $("#TypeToko24").attr("checked", true);
-                  }
-                  if (res.TokoApka == "Y") {
-                      $("#TokoApka").attr("checked", true);
-                  }
-                  if (res.isIkiosk == "Y") {
-                      $("#isIkiosk").attr("checked", true);
-                  }
                   $('#btn-aksi').html('Delete');
                   $('#btn-aksi').addClass('btn-danger');
                   $("#modal").modal("show");
@@ -410,7 +333,7 @@
               var formData = $("#form").serialize();
               $.ajax({
                   type: "POST",
-                  url: "<?= base_url('toko/crud') ?>",
+                  url: "<?= base_url('fiberstar/crud') ?>",
                   dataType: 'json',
                   data: formData,
                   success: function(res) {
