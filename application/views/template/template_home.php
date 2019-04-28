@@ -27,7 +27,7 @@
 <body id="page-top">
     <?php
     if ($this->session->has_userdata('admin_menu')) {
-        echo '<input type="hidden" class="form-control" id="admin_menu" value="Y">';
+        echo '<input type="hidden" class="form-control" id="mod_menu" value="Y">';
     }
     ?>
 
@@ -120,12 +120,26 @@
                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <h3 class="pr-4"><?= $title_page ?></h3>
-                            <input type="text" class="form-control bg-light border-0 small " placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
+                            <input type="text" list="listMenu" class="form-control bg-light border-0 small " placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" id="txtSearch">
+                            <div>
                                 <button class="btn btn-primary" type="button">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
+                            <datalist id="listMenu">
+                                <?php
+
+                                $role_id = $this->session->userdata['role_id'];
+                                $menu = $this->db->query("SELECT tb_menu.*,id_level_user FROM tb_menu JOIN tb_menu_role ON tb_menu.id=tb_menu_role.id_menu WHERE id_level_user='$role_id' AND link!='#' ORDER BY urutan_menu")->result();
+
+                                foreach ($menu as $m) {
+                                    echo '<option value="' . $m->nama_menu . '" data-link="' . base_url($m->link) . '">' . $m->nama_menu . '</option>';
+                                }
+
+
+                                ?>
+
+                            </datalist>
                         </div>
                     </form>
 
@@ -296,6 +310,22 @@
 <!-- Custom scripts for all pages-->
 <script src="<?= base_url('assets/') ?>js/sb-admin-2.js"></script>
 
+<script>
+    $("#txtSearch").change(function() {
+        if ($(this).val() != "") {
+            getnama = $("#listMenu").find("option[value='" + $(this).val() + "']");
+            window.open(getnama.attr("data-link"), '_self');
+        }
+    });
 
+    $("#txtSearch").on('keyup', function(e) {
+        if (e.keyCode === 13) {
+            if ($(this).val() != "") {
+                getnama = $("#listMenu").find("option[value='" + $(this).val() + "']");
+                window.open(getnama.attr("data-link"), '_self');
+            }
+        }
+    });
+</script>
 
 </html>

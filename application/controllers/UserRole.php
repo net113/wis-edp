@@ -33,12 +33,26 @@ class userRole  extends CI_Controller
         $result = $this->db->get_where('tb_menu_role', $data);
         if ($result->num_rows() < 1) {
             $this->db->insert('tb_menu_role', $data);
+            if ($this->db->affected_rows()  >= 0) {
+                $hasil  = array("tipe" => "success", "data" => "Acces Granted");
+                echo json_encode($hasil);
+            } else {
+                $hasil  = array("tipe" => "error", "data" => $this->db->error()['message']);
+                echo json_encode($hasil);
+            }
         } else {
             $this->db->delete('tb_menu_role', $data);
+            if ($this->db->affected_rows()  >= 0) {
+                $hasil  = array("tipe" => "success", "data" => "Acces Removed");
+                echo json_encode($hasil);
+            } else {
+                $hasil  = array("tipe" => "error", "data" => $this->db->error()['message']);
+                echo json_encode($hasil);
+            }
         }
-        $this->session->set_flashdata('message', '<div class="alert alert-info" role="alert">
-                INFO!! Access Changed
-              </div>');
+        // $this->session->set_flashdata('message', '<div class="alert alert-info" role="alert">
+        //         INFO!! Access Changed
+        //       </div>');
     }
 
 

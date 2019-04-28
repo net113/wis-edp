@@ -1,0 +1,156 @@
+/* * {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #47beec;
+} */
+
+.list-wrapper {
+  position: relative;
+  min-width: 55%;
+  padding: 30px;
+  border-radius: 5px;
+  -webkit-box-shadow: 6px 6px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 6px 6px 2px rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.7);
+  background-image: repeating-linear-gradient(180deg, #e6e6e6, #e6e6e6 1px, #fff 1px, #fff 30px);
+}
+
+.list-wrapper:before {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 155px;
+  height: 50px;
+  top: 11px;
+  left: -43px;
+  background-color: rgba(236, 236, 236, 0.5);
+  border-left: 2px dotted skyblue;
+  border-right: 2px dotted skyblue;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.heading,
+.count,
+.done {
+  font-size: 2em;
+  text-transform: uppercase;
+  font-family: 'Segoe UI';
+  color: #f34040;
+  text-align: center;
+  border-bottom: 3px solid;
+  margin: 2px 0 15px 0;
+}
+
+.add .txtAdd {
+  width: 80%;
+  padding-bottom: 15px;
+  background-color: #FFFFFF;
+  border: 1px solid #E3E3E3;
+  border-radius: 6px;
+  font-size: .875rem;
+  color: #565656;
+  padding: 8px 12px;
+  height: 40px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.add .btnAdd {
+  width: 18%;
+  border-width: 2px;
+  font-weight: 400;
+  padding: 8px 8px;
+  border: 1px solid #f34040;
+  border-radius: 5px;
+  color: #FFFFFF;
+  background-color: #f34040;
+  cursor: pointer;
+  margin-bottom: 5px;
+  font-size: 0.8s75rem;
+  text-align: center;
+}
+
+.item {
+  margin: 8px;
+  position: relative;
+}
+
+.item label {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.1em;
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  visibility: hidden;
+}
+
+input[type="checkbox"]+label span {
+  width: 19px;
+  height: 19px;
+  position: absolute;
+  top: 4px;
+  left: -5px;
+  background-color: #fff;
+  border: 1px solid #888;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked+label {
+  color: #ccc;
+  text-decoration: line-through;
+}
+
+input[type="checkbox"]:checked+label span {
+  border: none;
+}
+
+input[type="checkbox"]:checked+label span:before,
+input[type="checkbox"]:checked+label span:after {
+  content: "";
+  width: 3px;
+  height: 21px;
+  position: absolute;
+  top: -2px;
+  left: 7px;
+  background-color: #f34040;
+}
+
+input[type="checkbox"]:checked+label span:before {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+input[type="checkbox"]:checked+label span:after {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.count,
+.done {
+  border-top: 3px solid #f34040;
+  border-bottom: none;
+  margin-bottom: 0px;
+  font-size: 1.5em;
+}
+
+/*# sourceMappingURL=styletodolist.css.map */

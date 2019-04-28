@@ -77,7 +77,7 @@
                       </div>
                       <div class="form-group row">
                           <label class="col-sm-3 control-label" for="tipe_koneksi_secondary">Backup</label>
-                          <input list="list_koneksi_secondary" value="" class="mr-2 col-sm-4 custom-select custom-select-sm" placeholder="Jenis Koneksi Backup" id="tipe_koneksi_secondary" name="tipe_koneksi_secondary" >
+                          <input list="list_koneksi_secondary" value="" class="mr-2 col-sm-4 custom-select custom-select-sm" placeholder="Jenis Koneksi Backup" id="tipe_koneksi_secondary" name="tipe_koneksi_secondary">
                           <datalist id="list_koneksi_secondary">
                               <?php
                                 $role = $this->db->get('tb_tipe_koneksi')->result_array();
@@ -86,52 +86,52 @@
                                 }
                                 ?>
                           </datalist>
-                          <input value="" class="col-sm-4 form-control form-control-sm" id="ip_backup" name="ip_backup" placeholder="IP Router Backup" >
+                          <input value="" class="col-sm-4 form-control form-control-sm" id="ip_backup" name="ip_backup" placeholder="IP Router Backup">
                       </div>
                       <div class="form-group row">
                           <label class="col-sm-3 control-label" for="ip_induk">IP Induk</label>
-                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_induk" name="ip_induk" placeholder="IP Induk +1" >
+                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_induk" name="ip_induk" placeholder="IP Induk +1">
                           <label class="col-sm-3 control-label-sm" style="max-width: 20%;" for="ip_anak1">IP Anak1</label>
-                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_anak1" name="ip_anak1" placeholder="IP Anak1 + 2" >
-                          
+                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_anak1" name="ip_anak1" placeholder="IP Anak1 + 2">
+
                       </div>
                       <div class="form-group row">
                           <label class="col-sm-3 control-label" for="ip_apka">IP Apka</label>
-                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_apka" name="ip_apka" placeholder="IP Apka +3" >
+                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_apka" name="ip_apka" placeholder="IP Apka +3">
                           <label class="col-sm-3 control-label-sm" style="max-width: 20%;" for="ip_ikios">IP Ikios</label>
-                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_ikios" name="ip_ikios" placeholder="IP Ikios + 20" >                          
-                      </div>                      
+                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_ikios" name="ip_ikios" placeholder="IP Ikios + 20">
+                      </div>
                       <div class="form-group row">
                           <label class="col-sm-3 control-label" for="ip_stb">IP STB</label>
-                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_stb" name="ip_stb" placeholder="IP STB +17" >
+                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_stb" name="ip_stb" placeholder="IP STB +17">
                           <label class="col-sm-3 control-label-sm" style="max-width: 20%;" for="ip_router_edc">IP RB EDC</label>
-                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_router_edc" name="ip_router_edc" placeholder="IP RB EDC + 19" >                          
+                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_router_edc" name="ip_router_edc" placeholder="IP RB EDC + 19">
                       </div>
                       <div class="form-group row">
                           <label class="col-sm-3 control-label" for="ip_anak2">IP Anak2</label>
-                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_anak2" name="ip_anak2" placeholder="IP Induk + 4" >
+                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_anak2" name="ip_anak2" placeholder="IP Induk + 4">
                           <label class="col-sm-3 control-label-sm" style="max-width: 20%;" for="ip_anak3">IP Anak3</label>
-                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_anak3" name="ip_anak3" placeholder="IP Anak3 + 5" >                          
+                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_anak3" name="ip_anak3" placeholder="IP Anak3 + 5">
                       </div>
                       <div class="form-group row">
                           <label class="col-sm-3 control-label" for="ip_anak4">IP Anak4</label>
-                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_anak4" name="ip_anak4" placeholder="IP Anak4 + 6" >
+                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_anak4" name="ip_anak4" placeholder="IP Anak4 + 6">
                           <label class="col-sm-3 control-label-sm" style="max-width: 20%;" for="ip_anak5">IP Anak5</label>
-                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_anak5" name="ip_anak5" placeholder="IP Anak5 + 7" >                          
+                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_anak5" name="ip_anak5" placeholder="IP Anak5 + 7">
                       </div>
                       <div class="form-group row">
                           <label class="col-sm-3 control-label" for="ip_anak6">IP Anak6</label>
-                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_anak6" name="ip_anak6" placeholder="IP Anak6 + 8" >
+                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_anak6" name="ip_anak6" placeholder="IP Anak6 + 8">
                           <label class="col-sm-3 control-label-sm" style="max-width: 20%;" for="ip_anak7">IP Anak7</label>
-                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_anak7" name="ip_anak7" placeholder="IP Anak7 + 9" >                          
+                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_anak7" name="ip_anak7" placeholder="IP Anak7 + 9">
                       </div>
                       <div class="form-group row">
                           <label class="col-sm-3 control-label" for="ip_pointcafe">IP P Cafe</label>
-                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_pointcafe" name="ip_pointcafe" placeholder="IP P Cafe + 9" >
+                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_pointcafe" name="ip_pointcafe" placeholder="IP P Cafe + 9">
                           <label class="col-sm-3 control-label-sm" style="max-width: 22%;" for="ip_telemetri">IP Telemetri</label>
-                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_telemetri" name="ip_telemetri" placeholder="IP Telemetri + 10" >                          
+                          <input value="" class="col-sm-3 form-control form-control-sm" id="ip_telemetri" name="ip_telemetri" placeholder="IP Telemetri + 10">
                       </div>
-                     
+
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -153,13 +153,13 @@
 
 
 
-  <script>     
+  <script>
       $.fn.dataTable.ext.buttons.download = {
           className: 'admin-menu',
 
-          action: function(e, dt, node, config) {            
+          action: function(e, dt, node, config) {
               downloadCSV()
-           
+
           }
       };
       $(document).ready(function() {
@@ -181,12 +181,12 @@
                   ['25 rows', '50 rows', '100 rows', 'Show all']
               ],
               fnInitComplete: function() {
-                  if ($("#admin_menu").val() != "Y") {
+                  if ($("#mod_menu").val() != "Y") {
                       $(".admin-menu").hide();
                   }
               },
               fnDrawCallback: function() {
-                  if ($("#admin_menu").val() != "Y") {
+                  if ($("#mod_menu").val() != "Y") {
                       $(".admin-menu").hide();
                   }
               },
@@ -201,6 +201,10 @@
                   {
                       "data": "NamaToko",
                       "title": "Nama"
+                  },
+                  {
+                      "data": "tipe_koneksi_primary",
+                      "title": "KONEKSI"
                   },
                   {
                       "data": "ip_router",
@@ -243,6 +247,16 @@
 
               }
           });
+          $('#dataTable').css('cursor', 'pointer');
+          $("#dataTable").on("click", "td", function() {
+              copyToClipboard(this);
+              swal({
+                  //title: res.tipe.toUpperCase(),
+                  text: "Success copying " + $(this).text(),
+                  timer: 1000,
+                  type: "success"
+              });
+          });
       }); //domready
 
       function showModals(id) {
@@ -266,10 +280,10 @@
                       $("#aksi").val("edit");
                       $("#key").val(id);
                       $('#btn-aksi').html('Update');
-                      $('#btn-aksi').addClass('btn-warning');
-                      setModalData(res);    
-                      $("#KodeToko").attr("readonly",true);
-                      $("#NamaToko").attr("readonly",true);
+                      $('#btn-aksi').addClass('btn-warning').show();
+                      setModalData(res);
+                      $("#KodeToko").attr("readonly", true);
+                      $("#NamaToko").attr("readonly", true);
                       $("#modal").modal("show");
                   },
                   error: function(xhr, textStatus, thrownError) {
@@ -299,43 +313,51 @@
 
       function viewModals(id) {
 
-// Untuk Eksekusi Data Yang Ingin di Edit 
-if (id) {
+          // Untuk Eksekusi Data Yang Ingin di Edit 
+          if (id) {
 
-    $.ajax({
-        type: "POST",
-        url: "<?= base_url('iptoko/crud') ?>",
-        dataType: 'json',
-        data: {
-            id: id,
-            aksi: "get"
-        },
-        beforeSend: function() {
-            clearModals();
-        },
-        success: function(res) {
-            $("#label").html('Detail Toko');
-            $("#aksi").val("edit");
-            $("#key").val(id);
-            $('#btn-aksi').hide();
-            setModalData(res);    
-            $("#KodeToko").attr("readonly",true);
-            $("#NamaToko").attr("readonly",true);
-            $("#modal").modal("show");
-        },
-        error: function(xhr, textStatus, thrownError) {
-            $("#modal").modal("show");
-            swal({
-                title: "FAILED",
-                text: xhr.responseText,
-                type: "error"
-            });
+              $.ajax({
+                  type: "POST",
+                  url: "<?= base_url('iptoko/crud') ?>",
+                  dataType: 'json',
+                  data: {
+                      id: id,
+                      aksi: "get"
+                  },
+                  beforeSend: function() {
+                      clearModals();
+                  },
+                  success: function(res) {
+                      $("#label").html('Detail Toko');
+                      $("#aksi").val("edit");
+                      $("#key").val(id);
+                      $('#btn-aksi').hide();
+                      setModalData(res);
+                      $("#KodeToko").attr("readonly", true);
+                      $("#NamaToko").attr("readonly", true);
+                      $("#modal").modal("show");
+                  },
+                  error: function(xhr, textStatus, thrownError) {
+                      $("#modal").modal("show");
+                      swal({
+                          title: "FAILED",
+                          text: xhr.responseText,
+                          type: "error"
+                      });
 
-        }
-    });
+                  }
+              });
 
-}
-}
+          }
+      }
+
+      function copyToClipboard(element) {
+          var $temp = $("<input>");
+          $("body").append($temp);
+          $temp.val($(element).text()).select();
+          document.execCommand("copy");
+          $temp.remove();
+      }
 
       function clearModals() {
           $('#modal input').removeAttr('readonly', '');
@@ -350,7 +372,7 @@ if (id) {
 
       function setModalData(res) {
 
-          var list = ['KodeToko', 'NamaToko', 'tipe_koneksi_primary', 'tipe_koneksi_secondary', 'ip_router', 'ip_backup', 'ip_induk', 'ip_anak1', 'ip_apka', 'ip_ikios', 'ip_stb', 'ip_router_edc','ip_anak2','ip_anak3','ip_anak4','ip_anak5','ip_anak6','ip_anak7','ip_pointcafe','ip_telemetri' ];
+          var list = ['KodeToko', 'NamaToko', 'tipe_koneksi_primary', 'tipe_koneksi_secondary', 'ip_router', 'ip_backup', 'ip_induk', 'ip_anak1', 'ip_apka', 'ip_ikios', 'ip_stb', 'ip_router_edc', 'ip_anak2', 'ip_anak3', 'ip_anak4', 'ip_anak5', 'ip_anak6', 'ip_anak7', 'ip_pointcafe', 'ip_telemetri'];
           $("#modal input").each(function(index) {
               let name = $(this).attr('name');
               if (list.includes(name)) {
@@ -444,8 +466,7 @@ if (id) {
 
       }
 
-      function downloadCSV(){
-        window.open('<?= base_url('iptoko/downloadmaster') ?>', '_blank');
+      function downloadCSV() {
+          window.open('<?= base_url('iptoko/downloadmaster') ?>', '_blank');
       }
-      
   </script>

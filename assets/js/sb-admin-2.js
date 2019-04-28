@@ -53,6 +53,3 @@
 
 })(jQuery); // End of use strict
 
-function hide_admin_menu() {
-	$(".admin-menu").hide();
-}

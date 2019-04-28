@@ -70,7 +70,7 @@
                                 }
                                 ?>
                           </datalist>
-                          <input list="list_koneksi_secondary" value="" class="datalist col-sm-4 custom-select custom-select-sm" id="tipe_koneksi_secondary" name="tipe_koneksi_secondary" placeholder="Koneksi Backup" >
+                          <input list="list_koneksi_secondary" value="" class="datalist col-sm-4 custom-select custom-select-sm" id="tipe_koneksi_secondary" name="tipe_koneksi_secondary" placeholder="Koneksi Backup">
                           <datalist id="list_koneksi_secondary">
                               <option> - </option>
                               <?php
@@ -87,7 +87,7 @@
                       </div>
                       <div class="form-group row">
                           <label class="col-sm-3 control-label" for="aspv">Area</label>
-                          <input list="list_aspv" value="" class="mr-2 col-sm-4 custom-select custom-select-sm datalist" id="aspv" name="aspv" required placeholder="ASPV" >
+                          <input list="list_aspv" value="" class="mr-2 col-sm-4 custom-select custom-select-sm datalist" id="aspv" name="aspv" required placeholder="ASPV">
                           <datalist id="list_aspv">
                               <?php
                                 $role = $this->db->get_where('tb_area', ['jabatan' => 'aspv'])->result_array();
@@ -96,7 +96,7 @@
                                 }
                                 ?>
                           </datalist>
-                          <input list="list_amgr" value="" class="col-sm-4 custom-select custom-select-sm datalist" id="amgr" name="amgr" required placeholder="AMGR" >
+                          <input list="list_amgr" value="" class="col-sm-4 custom-select custom-select-sm datalist" id="amgr" name="amgr" required placeholder="AMGR">
                           <datalist id="list_amgr">
                               <?php
                                 $role = $this->db->get_where('tb_area', ['jabatan' => 'amgr'])->result_array();
@@ -161,12 +161,12 @@
                   'copy', 'csv', 'colvis', 'pageLength'
               ],
               fnInitComplete: function() {
-                  if ($("#admin_menu").val() != "Y") {
+                  if ($("#mod_menu").val() != "Y") {
                       $(".admin-menu").hide();
                   }
               },
               fnDrawCallback: function() {
-                  if ($("#admin_menu").val() != "Y") {
+                  if ($("#mod_menu").val() != "Y") {
                       $(".admin-menu").hide();
                   }
               },

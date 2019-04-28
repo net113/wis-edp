@@ -50,7 +50,11 @@ class Fiberstar extends CI_Controller
                 $data = "";
                 $list =  ['user_ppoe', 'sid', 'pass_ppoe', 'tanggal', 'stat'];
                 foreach ($list as $l) {
-                    $data .= $l . "='" . $this->input->post($l) . "',";
+                    if ($this->input->post($l) == '') {
+                        $data .= $l . "=NULL,";
+                    } else {
+                        $data .= $l . "='" . $this->input->post($l) . "',";
+                    }
                 }
                 $kdtk = $this->input->post('KodeToko');
                 $updid = $this->session->userdata('fullname');
@@ -86,7 +90,11 @@ class Fiberstar extends CI_Controller
                 $data = "";
                 $list =  ['user_ppoe', 'sid', 'pass_ppoe', 'tanggal', 'stat'];
                 foreach ($list as $l) {
-                    $data .= $l . "='" . $this->input->post($l) . "',";
+                    if ($this->input->post($l) == '') {
+                        $data .= $l . "=NULL,";
+                    } else {
+                        $data .= $l . "='" . $this->input->post($l) . "',";
+                    }
                 }
                 $updid = $this->session->userdata('fullname');
                 $this->db->query("UPDATE tb_fiberstar SET $data updtime=CURRENT_TIMESTAMP(), updid='$updid' WHERE kdtk='$id' ");

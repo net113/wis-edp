@@ -131,12 +131,12 @@
                   'copy', 'csv', 'colvis', 'pageLength'
               ],
               fnInitComplete: function() {
-                  if ($("#admin_menu").val() != "Y") {
+                  if ($("#mod_menu").val() != "Y") {
                       $(".admin-menu").hide();
                   }
               },
               fnDrawCallback: function() {
-                  if ($("#admin_menu").val() != "Y") {
+                  if ($("#mod_menu").val() != "Y") {
                       $(".admin-menu").hide();
                   }
               },

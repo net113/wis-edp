@@ -11,8 +11,10 @@
           <div class="card-header pb-0 pt-3">
               <div class="row">
                   <div class="col-lg-6">
-                      <h5 class="m-0  text-primary">Total User Active : <?= $this->mUser->get_user_active(); ?> Orang
-                          </h4>
+                      <h5 class="m-0  text-primary">List Toko XL Home Cabang Bogor 1 G113</h5>
+                      <span class="badge badge-success">Cadangan: <?= getXLstat('CADANGAN') ?> </span>
+                      <span class="badge badge-warning">Terpakai: <?= getXLstat('TERPAKAI') ?> </span>
+
                   </div>
                   <div class="col-lg-6">
                       <?= $this->session->flashdata('message'); ?>
@@ -46,53 +48,56 @@
               </div>
               <div class="modal-body">
                   <div class="alert alert-danger" role="alert" id="removeWarning">
-                      <span class="fas fa-fw fa-exclamation-circle" aria-hidden="true"></span>
-                      <span class="sr-only">Error:</span>
+                      <span class="fas fa-fw fa-exclamation-circle"></span>
                       Are you sure ??
                   </div>
                   <form id="form" class="form-horizontal">
                       <input type="hidden" class="form-control" id="aksi" name="aksi">
+
+
                       <input type="hidden" class="form-control" id="key" name="key">
                       <div class="form-group row">
-                          <label class="col-sm-3 control-label" for="username">NIK</label>
-                          <input type="text" class="col-sm-8 form-control" id="username" name="username" required>
-                      </div>
-                      <div class="form-group row">
-                          <label class="col-sm-3 control-label" for="fullname">Nama</label>
-                          <input type="text" class="form-control col-sm-8" id="fullname" name="fullname" required>
-                      </div>
-                      <div class="form-group row">
-                          <label class="col-sm-3 control-label" for="email">Email</label>
-                          <input type="email" class="form-control col-sm-8" id="email" name="email" required>
-                      </div>
-                      <div class="form-group row">
-                          <label for="phone" class="col-sm-3 control-label">Phone</label>
-                          <input type="number" class="form-control col-sm-6" id="phone" name="phone" required>
-                      </div>
-                      <div class="form-group row">
-                          <label class="col-sm-3 control-label" for="role_id">Role</label>
-                          <select class="form-control col-sm-6" id="role_id" name="role_id">
-                              <option> - </option>
-                              <?php
-                                $role = $this->db->get('tb_user_role')->result_array();
-                                foreach ($role as $ic) {
-                                    echo '<option value="' . $ic['role_id'] . '">' . $ic['role_name'] . '</option>';
-                                }
-                                ?>
-
+                          <label for="sn_modem" class="col-sm-3 control-label">SN MODEM</label>
+                          <input type="text" class="form-control col-sm-6" id="sn_modem" name="sn_modem" required>
+                          <select type="text" class="ml-2 form-control col-sm-2 custom-select" id="stat_modem" name="stat_modem" required>
+                              <option value="BAIK">BAIK</option>
+                              <option value="RUSAK">RUSAK</option>
                           </select>
                       </div>
                       <div class="form-group row">
-                          <label class="col-sm-3 control-label" for="is_active">Status</label>
-                          <div class="custom-control custom-switch">
-                              <input type="checkbox" class="custom-control-input" id="is_active" name="is_active" value="">
-                              <label class="custom-control-label" for="is_active">Active</label>
-                          </div>
-                          <div class="ml-4 custom-control custom-switch">
-                              <input type="checkbox" class="custom-control-input" id="admin_menu" name="admin_menu" value="">
-                              <label class="custom-control-label" for="admin_menu">Admin Menu</label>
-                          </div>
+                          <label for="no_kartu" class="col-sm-3 control-label">NO KARTU</label>
+                          <input type="text" class="form-control col-sm-6" id="no_kartu" name="no_kartu" required>
+                          <select type="text" class="ml-2 form-control col-sm-2 custom-select" id="stat_kartu" name="stat_kartu" required>
+                              <option value="BAIK">BAIK</option>
+                              <option value="RUSAK">RUSAK</option>
+                          </select>
                       </div>
+                      <div class="form-group row">
+                          <label class="col-sm-3 control-label" for="KodeToko">Nama</label>
+                          <input list="list_kdtk" value="" class="datalist mr-1 col-sm-3 custom-select " id="KodeToko" name="KodeToko" placeholder="KDTK">
+                          <datalist id="list_kdtk">
+                              <?php
+                                $role = $this->db->get('tb_toko')->result_array();
+                                foreach ($role as $ic) {
+                                    echo '<option value="' . $ic['KodeToko'] . '" data-nama="' . $ic['NamaToko'] . '"> ' . $ic['KodeToko'] . ' - ' . $ic['NamaToko'] . '</option>';
+                                }
+                                ?>
+                          </datalist>
+                          <input type="text" class="col-sm-5 form-control" id="NamaToko" name="NamaToko" placeholder="NAMA">
+                      </div>
+
+                      <div class="form-group row">
+                          <label for="tanggal" class="col-sm-3 control-label">TGL AKTIF</label>
+                          <input type="date" class="form-control col-sm-6" data-date-format="DD MMMM YYYY" id="tanggal" name="tanggal">
+                      </div>
+                      <div class="form-group row">
+                          <label for="stat" class="col-sm-3 control-label">STATUS</label>
+                          <select type="text" class="form-control col-sm-6 custom-select" id="stat" name="stat" required>
+                              <option value="TERPAKAI">TERPAKAI</option>
+                              <option value="CADANGAN">CADANGAN</option>
+                          </select>
+                      </div>
+
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -116,7 +121,7 @@
 
   <script>
       $.fn.dataTable.ext.buttons.tambah = {
-          className: 'buttons-tambah',
+          className: 'buttons-tambah admin-menu',
 
           action: function(e, dt, node, config) {
               showModals();
@@ -132,6 +137,16 @@
                   },
                   'copy', 'csv', 'colvis', 'pageLength'
               ],
+              fnInitComplete: function() {
+                  if ($("#mod_menu").val() != "Y") {
+                      $(".admin-menu").hide();
+                  }
+              },
+              fnDrawCallback: function() {
+                  if ($("#mod_menu").val() != "Y") {
+                      $(".admin-menu").hide();
+                  }
+              },
               responsive: true,
               serverSide: true,
               processing: true,
@@ -140,70 +155,106 @@
                   ['25 rows', '50 rows', '100 rows', 'Show all']
               ],
               ajax: {
-                  "url": "<?php echo base_url() . '/user/get_data_json' ?>",
+                  "url": "<?php echo base_url() . '/xlhome/get_data_json' ?>",
                   "type": "POST"
               },
               columns: [{
-                      "data": "username",
-                      "title": "NIK"
+                      "data": "sn_modem",
+                      "title": "SN MODEM"
                   },
                   {
-                      "data": "fullname",
+                      "data": "stat_modem",
+                      "title": "STAT MODEM",
+                      "className": "text-center",
+                      render: function(data, type, row) {
+                          if (data === 'BAIK') {
+                              return `<span class="badge badge-success">${data} </span>`;
+                          } else {
+                              return `<span class="badge badge-warning">${data} </span>`;
+                          }
+                          return data;
+                      }
+                  },
+                  {
+                      "data": "no_kartu",
+                      "title": "NO KARTU"
+                  },
+                  {
+                      "data": "stat_kartu",
+                      "title": "STAT KARTU",
+                      "className": "text-center",
+                      render: function(data, type, row) {
+                          if (data === 'BAIK') {
+                              return `<span class="badge badge-success">${data} </span>`;
+                          } else {
+                              return `<span class="badge badge-warning">${data} </span>`;
+                          }
+                          return data;
+                      }
+                  },
+                  {
+                      "data": "KodeToko",
+                      "title": "KDTK"
+                  },
+                  {
+                      "data": "NamaToko",
                       "title": "Nama"
                   },
                   {
-                      "data": "email",
-                      "title": "Email"
+                      "data": "tanggal",
+                      "title": "TGL AKTIF"
                   },
                   {
-                      "data": "phone",
-                      "title": "Phone"
-                  },
-                  {
-                      "data": "role_name",
-                      "title": "Role"
-                  },
-                  {
-                      "data": "admin_menu",
-                      "title": "Mod",
+                      "data": "stat",
+                      "title": "STATUS",
                       "className": "text-center",
                       render: function(data, type, row) {
-                          if (data === 'Y') {
-                              return '<div class="custom-control custom-switch"><input type="checkbox" class="custom-control-input"  checked >  <label class="custom-control-label" "></label></div>';
+                          if (data === 'CADANGAN') {
+                              return `<span class="badge badge-success">${data} </span>`;
                           } else {
-                              return '<div class="custom-control custom-switch"><input type="checkbox" class="custom-control-input"  >  <label class="custom-control-label" "></label></div>';
+                              return `<span class="badge badge-warning">${data} </span>`;
                           }
                           return data;
                       }
                   },
-                  {
-                      "data": "is_active",
-                      "title": "Active",
-                      "className": "text-center",
-                      render: function(data, type, row) {
-                          if (data === 'Y') {
-                              return '<div class="custom-control custom-switch"><input type="checkbox" class="custom-control-input"  checked >  <label class="custom-control-label" ></label></div>';
-                          } else {
-                              return '<div class="custom-control custom-switch"><input type="checkbox" class="custom-control-input"  >  <label class="custom-control-label" ></label></div>';
-                          }
-                          return data;
-                      }
-                  },
+
                   {
                       "data": "view",
                       "title": "Options",
+                      "className": "text-center admin-menu",
                       "orderable": false
                   }
               ]
           });
+
           $("#modal input[type=checkbox]").change(function() {
-              if ($(this).prop("checked")) {
-                  $(this).val("Y");
+              if (this.checked) {
+                  $(this).val('Y');
+
               } else {
-                  $(this).val("N");
+                  $(this).val('N');
 
               }
           });
+
+          $('.datalist').blur(function() {
+              let val = $(this).val();
+              let list = $(this).attr("list");
+              let cek = $("#" + list).find("option[value='" + val + "']");
+
+              if (cek != null && cek.length == 0) {
+                  $(this).val("");
+                  $(this).focus();
+              }
+          });
+
+          $("#KodeToko").change(function() {
+              if ($(this).val() != "") {
+                  getnama = $("#list_kdtk").find("option[value='" + $(this).val() + "']");
+                  $("#NamaToko").val(getnama.attr("data-nama"));
+              }
+          });
+
       }); //domready
 
       function showModals(id) {
@@ -213,7 +264,7 @@
 
               $.ajax({
                   type: "POST",
-                  url: "<?= base_url('user/crud') ?>",
+                  url: "<?= base_url('xlhome/crud') ?>",
                   dataType: 'json',
                   data: {
                       id: id,
@@ -223,18 +274,13 @@
                       clearModals();
                   },
                   success: function(res) {
-                      $("#label").html('Edit User');
+                      $("#label").html('Edit Toko');
                       $("#aksi").val("edit");
                       $("#key").val(id);
                       $('#btn-aksi').html('Update');
                       $('#btn-aksi').addClass('btn-warning');
                       setModalData(res);
-                      if (res.is_active == "Y") {
-                          $("#is_active").attr("checked", true);
-                      }
-                      if (res.admin_menu == "Y") {
-                          $("#admin_menu").attr("checked", true);
-                      }
+                      $("#NamaToko").attr("readonly", true);
                       $("#modal").modal("show");
                   }
               });
@@ -243,7 +289,8 @@
           // Untuk Tambahkan Data
           else {
               clearModals();
-              $("#label").html("Add New User");
+              $("#NamaToko").attr("readonly", true);
+              $("#label").html("Add New Toko");
               $("#aksi").val("new");
               $('#btn-aksi').html('Save');
               $('#btn-aksi').addClass('btn-success');
@@ -255,13 +302,9 @@
 
       function clearModals() {
           $('#modal input').removeAttr('readonly', '');
-          $('#modal input[type=checkbox]').removeAttr('checked', '').removeAttr('readonly', '');
-
+          $('#modal input[type=checkbox]').removeAttr('checked', '');
           $('#modal select').removeAttr('disabled', '');
-          $('#modal input[type=text]').val('');
-          $('#modal input[type=email]').val('');
-          $('#modal input[type=number]').val('');
-          $('#modal input[type=checkbox]').val('');
+          $('#modal input').val('');
           $('#btn-aksi').removeClass('btn-warning');
           $('#btn-aksi').removeClass('btn-danger');
           $('#modal select').val('');
@@ -270,7 +313,7 @@
 
       function setModalData(res) {
 
-          var list = ['username', 'fullname', 'email', 'phone', 'role_id', 'is_active', 'admin_menu'];
+          var list = ['KodeToko', 'NamaToko', 'stat_modem', 'sn_modem', 'no_kartu', 'stat_kartu', 'tanggal', 'stat'];
           $("#modal input").each(function(index) {
               let name = $(this).attr('name');
               if (list.includes(name)) {
@@ -289,7 +332,7 @@
       function deleteID(id) {
           $.ajax({
               type: "POST",
-              url: "<?= base_url('user/crud') ?>",
+              url: "<?= base_url('xlhome/crud') ?>",
               dataType: 'json',
               data: {
                   id: id,
@@ -299,11 +342,12 @@
                   clearModals();
               },
               success: function(res) {
+                  $("#removeWarning").html('<span class="fas fa-fw fa-exclamation-circle" ></span> Are You Sure???');
                   $("#removeWarning").show();
-                  $("#label").html("Delete User");
+                  $("#label").html("Delete Toko");
                   $("#aksi").val("delete");
                   setModalData(res);
-                  $('#key').val(res.username);
+                  $('#key').val(res.KodeToko);
                   $("#modal input").attr("readonly", "true");
                   $("#modal select").attr("disabled", "true");
                   $('#btn-aksi').html('Delete');
@@ -315,52 +359,43 @@
       }
 
       function saveData() {
-          var formData = $("#form").serialize();
-          $.ajax({
-              type: "POST",
-              url: "<?= base_url('user/crud') ?>",
-              dataType: 'html',
-              data: formData,
-              success: function(res) {
-                  window.location.replace('user');
-              },
-              error: function(xhr, textStatus, thrownError) {
-                  $("#modal").modal("show");
-                  console.log(xhr.responseText);
-
+          let kekurangan = 0;
+          $("#form input[required]").each(function() {
+              if ($(this).val() == "") {
+                  $("#removeWarning").html('<span class="fas fa-fw fa-exclamation-circle" ></span> Harap isi field : ' + $(this).attr("name"));
+                  $("#removeWarning").show();
+                  kekurangan += 1;
               }
-
-          })
-      }
-
-      function resetPassword(id) {
-          swal({
-              title: "Are you sure?",
-              text: "Apakah anda ingin reset password user dengan NIK : " + id,
-              type: "warning",
-              showCancelButton: true,
-              confirmButtonClass: "btn btn-info btn-fill",
-              confirmButtonText: "Yes, Reset!",
-              cancelButtonClass: "btn btn-danger btn-fill",
-              closeOnConfirm: false,
-          }, function() {
+          });
+          if (kekurangan == 0) {
+              var formData = $("#form").serialize();
               $.ajax({
                   type: "POST",
-                  url: "<?= base_url('user/reset') ?>",
-                  dataType: 'html',
-                  data: {
-                      username: id
-                  },
+                  url: "<?= base_url('xlhome/crud') ?>",
+                  dataType: 'json',
+                  data: formData,
                   success: function(res) {
-                      window.location.replace('user');
+                      $("#modal").modal("hide");
+                      swal({
+                          title: res.tipe.toUpperCase(),
+                          text: res.data,
+                          timer: 2500,
+                          type: res.tipe
+                      });
+                      $('#dataTable').DataTable().ajax.reload();
                   },
                   error: function(xhr, textStatus, thrownError) {
                       $("#modal").modal("show");
-                      console.log(xhr.responseText);
+                      swal({
+                          title: "FAILED",
+                          text: xhr.responseText,
+                          type: "error"
+                      });
 
                   }
 
               })
-          });
+          }
+
       }
   </script>

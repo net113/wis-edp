@@ -27,17 +27,17 @@
             <tbody>
                 <?php $i = 1; ?>
                 <?php foreach ($tbmenu as $menu) : ?>
-                <tr>
-                    <td><?= $i; ?></td>
-                    <td><?= $menu['nama_menu'] ?></td>
-                    <td>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" <?= cekAkses($role_id, $menu['id']); ?> data-role="<?= $role_id ?>" data-menu="<?= $menu['id'] ?>">
+                    <tr>
+                        <td><?= $i; ?></td>
+                        <td><?= $menu['nama_menu'] ?></td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" <?= cekAkses($role_id, $menu['id']); ?> data-role="<?= $role_id ?>" data-menu="<?= $menu['id'] ?>">
 
-                        </div>
-                    </td>
-                </tr>
-                <?php $i++; ?>
+                            </div>
+                        </td>
+                    </tr>
+                    <?php $i++; ?>
                 <?php endforeach; ?>
             </tbody>
         </table>
@@ -51,14 +51,22 @@
         $.ajax({
             type: "POST",
             url: "<?= base_url('userRole/changeAccess') ?>",
+            dataType: "json",
             data: {
                 idMenu: idMenu,
                 idRole: idRole
             },
-            success: function() {
-                document.location.href = "<?= base_url('userRole/accessMenu/') ?>" + idRole;
+            success: function(res) {
+                // document.location.href = "<?= base_url('userRole/accessMenu/') ?>" + idRole;
+
+                swal({
+                    title: res.tipe.toUpperCase(),
+                    text: res.data,
+                    timer: 2500,
+                    type: res.tipe
+                });
             }
 
         });
     });
-</script> 
+</script>

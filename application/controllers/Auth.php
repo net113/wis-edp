@@ -33,6 +33,7 @@ class Auth extends CI_Controller
             if (md5($password) == $user['password']) {
                 if ($user['is_active'] == 'Y') {
                     $this->session->set_userdata('username', $user['username']);
+                    $this->session->set_userdata('fullname', $user['fullname']);
                     if ($user['admin_menu'] == 'Y') {
                         $this->session->set_userdata('admin_menu', $user['admin_menu']);
                     }
