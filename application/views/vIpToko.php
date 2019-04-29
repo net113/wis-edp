@@ -249,13 +249,16 @@
           });
           $('#dataTable').css('cursor', 'pointer');
           $("#dataTable").on("click", "td", function() {
-              copyToClipboard(this);
-              swal({
-                  //title: res.tipe.toUpperCase(),
-                  text: "Success copying " + $(this).text(),
-                  timer: 1000,
-                  type: "success"
-              });
+              if ($(this).text().contains('<br>')) {
+                  copyToClipboard(this);
+                  swal({
+                      //title: res.tipe.toUpperCase(),
+                      text: "Success copying " + $(this).text(),
+                      timer: 1000,
+                      type: "success"
+                  });
+              }
+
           });
       }); //domready
 
