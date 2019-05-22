@@ -78,7 +78,7 @@ class iptoko extends CI_Controller
 
         $str = "SELECT kodetoko,namatoko,(SELECT kode FROM tb_tipe_koneksi WHERE jenis=t.`tipe_koneksi_primary`) as koneksi_utama,tipe_koneksi_primary as ket_utama,ip_router AS ip_utama,
         (select kode from tb_tipe_koneksi where jenis=t.`tipe_koneksi_secondary`) as koneksi_backup,tipe_koneksi_Secondary as ket_backup, ip_backup, IF(TypeToko24='Y',24,15) AS jambuka
-         from tb_toko t left join master_ip on tb_toko.kdtk=master_ip.kdtk";
+         from tb_toko t left join master_ip on t.KodeToko=master_ip.kdtk";
         $namafile = "master_koneksi_";
         dowloadSQLtoCSV($str, $namafile);
     }
